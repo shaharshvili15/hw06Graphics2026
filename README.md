@@ -23,8 +23,8 @@ project runs immediately. Copy the full contents of your completed HW05 `hw5.js`
 
 ## Group Members
 **MANDATORY: Add the full names of all group members here:**
-- [Member 1 Full Name]
-- [Member 2 Full Name]
+- Shahar Shvili 207637968
+- Natan Yudka 347465403
 
 ## Technical Details
 - Run the server with: `node index.js`
