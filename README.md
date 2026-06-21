@@ -1,32 +1,38 @@
 # Computer Graphics - Exercise 6 - Interactive Bowling Game
 
-This exercise builds on **HW05** (the static bowling alley). In HW06 you turn that
-static scene into a playable bowling game: aiming and power controls, a rolling ball
-with simplified physics, pins that get knocked down, and full 10-frame scoring.
-
-## Getting Started
-1. Clone this repository to your local machine
-2. Make sure you have Node.js installed
-3. Install dependencies: `npm install`
-4. Start the local web server: `node index.js`
-5. Open your browser and go to http://localhost:8000
-
-## Bring Your HW05 Work Forward
-The starter `src/hw6.js` ships with the **same bare lane** you were given in HW05 so the
-project runs immediately. Copy the full contents of your completed HW05 `hw5.js`
-(lane, markings, gutters, pins, ball, lighting, UI containers, orbit camera) into
-`src/hw6.js`, then implement the HW06 interactive systems marked with `// TODO (HW06)`.
-
-## Complete Instructions
-**All detailed instructions, requirements, and grading can be found in:**
-`bowling_exercise_instructions.html` (open it in a browser).
-
 ## Group Members
-**MANDATORY: Add the full names of all group members here:**
 - Shahar Shvili 207637968
 - Natan Yudka 347465403
 
+## How to Run
+1. Make sure you have Node.js installed
+2. Install dependencies: `npm install`
+3. Start the server: `node index.js`
+4. Open your browser at http://localhost:8000
+
+## Controls
+| Key | Action |
+|-----|--------|
+| `←` / `→` | Move the ball left / right along the foul line |
+| `↑` / `↓` | Add right / left hook (spin/curve) |
+| `Space` | First press: starts the oscillating power meter. Second press: locks power and releases the ball |
+| `C` | Cycle camera modes: Bowler → Follow (tracks the ball) → Overhead → Pin-end → Side |
+| `O` | Toggle orbit camera (free look) |
+| `R` | Reset pins and start a new game |
+
+## Bonus Features
+- **Ball hook / curve** — `↑` / `↓` arrows apply spin that curves the ball left or right as it rolls
+- **Follow camera** — one of the `C` camera presets tracks the ball down the lane
+- **Pinsetter / sweeper animation** — after each roll a sweeper bar descends, clears any fallen pins, and rises before the next roll
+- **Sound effects** — synthesized sounds using the Web Audio API: a low rumble while the ball rolls, and an impact crack when pins are hit (no external audio files)
+
+## Known Limitations
+- The collision detection uses the spec formula `ball radius + pin radius` for hit detection. Because the ball's visual radius is proportionally large relative to pin spacing, a straight center throw with full power will often result in a strike — which is realistic but leaves less room for variation on center shots. Off-center and angled throws behave as expected.
+- Shadows from the directional light may not reach the full length of the lane (cosmetic, carried over from HW05).
+
 ## Technical Details
-- Run the server with: `node index.js`
-- Access at http://localhost:8000 in your web browser
-- Built with THREE.js (r128) — simplified, hand-written physics (no physics engine)
+- Built with THREE.js r128 (loaded via CDN)
+- All physics and collision are hand-written — no external physics engine
+- `src/hw6.js` — all game logic
+- `src/OrbitControls.js` — vendored THREE.js OrbitControls
+- `index.js` — Express server (port 8000)
